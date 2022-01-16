@@ -6,25 +6,24 @@ import {
 import './App.css';
 import Navbar from './components/Navbar';
 import HomePage from './pages/Home';
-import SingleWorkPage from './pages/SingleWork';
-import WorkPage from './pages/Work';
-
-
+import PortfolioPage from './pages/Portfolio';
+import { portfolio } from './routes';
 
 function App() {
 
   return (
     <Router>
       <div className="flex">
-        <div className="shrink-0 grow-0 m basis-auto md:basis-72 p-5 px-2 bg-green-500 h-screen overflow-y-scroll">
+        <div className="shrink-0 grow-0 m basis-auto md:basis-72 p-2 md:p-5 px-2 md:px-6 bg-green-500 h-screen">
           <Navbar />
         </div>
-        <div className="h-screen overflow-y-auto">
+        <div className="justify-self-stretch w-full h-screen bg-white overflow-y-scroll">
           <Routes>
-            <Route exact path="/" element={<HomePage />} />
-            <Route path="/work" element={<WorkPage />}>
-              <Route path=":id" element={<SingleWorkPage />} />
-            </Route>
+            <Route path="/" element={<HomePage />} />
+            <Route path="portfolio" element={<PortfolioPage />} />
+            {portfolio.map(p => (
+              <Route path={p.href} element={<p.component />} />
+            ))}
           </Routes>
         </div>
       </div>

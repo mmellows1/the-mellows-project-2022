@@ -5,6 +5,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from '../logo.png';
 import Button from "./shared/Button";
+import { routes, socials } from '../routes';
 
 
 
@@ -21,44 +22,6 @@ const SocialItem = ({ icon, href }) => (
         </a>
     </li>
 )
-
-const routes = [
-    {
-        label: 'Home',
-        href: '/',
-        icon: faHome
-    },
-    {
-        label: 'Work',
-        href: '/work',
-        icon: faBriefcase
-    },
-    {
-        label: 'Portfolio',
-        href: '/porfolio',
-        icon: faArtstation
-    },
-    {
-        label: 'Contact',
-        href: '/contact',
-        icon: faPhone
-    }
-]
-
-const socials = [
-    {
-        icon: faFacebookF,
-        href: 'https://www.facebook.com/mdmellows/'
-    },
-    {
-        icon: faInstagram,
-        href: 'https://www.instagram.com/goonsbury_milkfloat/'
-    },
-    {
-        icon: faLinkedinIn,
-        href: 'https://www.linkedin.com/in/matthew-mellows-b3166487/'
-    },
-]
 
 const age = (birthDate) => {
     var now = new Date();
@@ -82,39 +45,34 @@ const age = (birthDate) => {
     return age;
 }
 
-const Navbar = () => {
-
-    const [menuOpen, setMenuOpen] = useState(false);
-
-    return (
-        <nav className="">
-            <div className="block md:hidden">
-                {routes.map(a => (
-                    <Link to={a.href} className="block bg-green-400 text-white rounded-full w-12 h-12 relative mb-4">
-                        <FontAwesomeIcon icon={a.icon} className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2" />
-                    </Link>
-                ))}
-            </div>
-            <div className="hidden md:block">
-                <Link to="/"><img src={logo} className="App-logo" alt="logo" className="rounded-full mx-auto mb-4 w-24" /></Link>
-                <p className="text-center text-sm text-white">Hi, my name is Matthew Mellows, I am {age(new Date('23 July 1991'))} years old and have been developing for {age(new Date('23 July 2013'))} years, mainly specializing in in React and Wordpress</p>
-                <hr className="border-b-2 border-opacity-20 border-white mt-4 mb-3" />
-                <ul className="flex justify-center gap-2">
-                    {socials.map(a => <SocialItem icon={a.icon} href={a.href} />)}
-                </ul>
-                <ul>
-                    <div className="">
-                        {routes.map(a => <ListItem label={a.label} href={a.href} />)}
-                    </div>
-                    <div className="m-5">
-                        <Button href="/quote" color="primary-alt" size="sm" extraClasses="w-full">
-                            Get a quote
-                        </Button>
-                    </div>
-                </ul>
-            </div>
-        </nav>
-    )
-}
+const Navbar = () => (
+    <nav className="">
+        <div className="block md:hidden">
+            {routes.filter(({ isInMenu }) => isInMenu).map(a => (
+                <Link to={a.href} className="block bg-green-400 text-white rounded-full w-12 h-12 relative mb-4">
+                    <FontAwesomeIcon icon={a.icon} className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2" />
+                </Link>
+            ))}
+        </div>
+        <div className="hidden md:block">
+            <Link to="/"><img src={logo} className="App-logo" alt="logo" className="rounded-full mx-auto mb-4 w-24" /></Link>
+            <p className="text-center font-bold text-sm text-white">Hi, my name is Matthew Mellows, I am {age(new Date('23 July 1991'))} years old and have been developing for {age(new Date('23 July 2013'))} years, mainly specializing in in React and Wordpress</p>
+            <hr className="border-b-2 border-opacity-20 border-white mt-4 mb-3" />
+            <ul className="flex justify-center gap-2 mb-5">
+                {socials.map(a => <SocialItem icon={a.icon} href={a.href} />)}
+            </ul>
+            <ul>
+                <div className="text-center">
+                    {routes.filter(({ isInMenu }) => isInMenu).map(a => <ListItem label={a.label} href={a.href} />)}
+                </div>
+                <div className="m-5 text-center">
+                    <Button href="/quote" color="primary-alt" size="sm" extraClasses="w-full">
+                        Get a quote
+                    </Button>
+                </div>
+            </ul>
+        </div>
+    </nav>
+)
 
 export default Navbar;
