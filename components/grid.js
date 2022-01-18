@@ -2,10 +2,10 @@ import React from "react";
 
 const Grid = (props) => {
 
-    const {sm, md, gap, children, item, container} = props;
+    const { sm, md, gap, children, item, container, classes } = props;
 
     const defaultProps = {
-        className: item ? `md:col-span-${md} sm:col-span-${sm} col-span-4` : `grid md:grid-cols-${md} grid-cols-${sm} gap-${gap}`,
+        className: item ? `md:col-span-${md} sm:col-span-${sm} col-span-4` : `grid md:grid-cols-${md} grid-cols-${sm} gap-${gap} ${classes}`,
         onFocus: () => console.log(1),
     }
 

@@ -2,10 +2,5 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-<<<<<<< HEAD
-  "/contact": "pages/contact.js"
-=======
-  "/": "pages/index.js",
   "/become-a-client": "pages/become-a-client.js"
->>>>>>> c155cc6fcf904176c1a7275f427f124a43084515
 }
