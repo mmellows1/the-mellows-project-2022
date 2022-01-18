@@ -3,7 +3,7 @@ import React from "react";
 const Input = (props) => {
 
     const defaultProps = {
-        className: 'bg-white p-3 w-full border-2 border-slate-100 rounded-md text-slate-300 placeholder:text-slate-300',
+        className: 'p-3 w-full',
         ...props.innerProps
     }
 

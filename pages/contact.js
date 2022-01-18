@@ -1,7 +1,6 @@
 import { useState } from 'react';
-import Form from '../components/form';
-import Input from '../components/input';
-import Grid from '../components/grid';
+import Section from '@tmp/components/section';
+import Heading from '@tmp/components/heading';
 
 const Contact = () => {
 
@@ -21,25 +20,33 @@ const Contact = () => {
     }
 
     return (
-        <Form className="bg-white p-5 w-20 mx-auto" onSubmit={handleSubmit}>
-            <Grid container sm={4} md={4} gap={4}>
-                <Grid item sm={2} md={2}>
-                    <Input type="text" innerProps={{placeholder: 'Name', name: 'name', onChange: () => handleInputChange}} />
-                </Grid>
-                <Grid item sm={2} md={2}>
-                    <Input type="text"  innerProps={{placeholder: 'Email', name: 'email', onChange: () => handleInputChange}} />
-                </Grid>
-                <Grid item sm={2} md={4}>
-                    <Input type="text" innerProps={{placeholder: 'Subject', name: 'subject', onChange: () => handleInputChange}} />
-                </Grid>
-                <Grid item sm={2} md={4}>
-                    <Input type="textarea" innerProps={{placeholder: 'Message', name: 'message', onChange: () => handleInputChange}} />
-                </Grid>
-                <Grid item sm={4} md={4}>
-                    <button className="w-full bg-green-400 p-2 text-white rounded-md" type="submit">123</button>
-                </Grid>
-            </Grid>
-        </Form>
+        <Section>
+            <Heading tag="h1">Get in touch</Heading>
+            <p>If you are interested in getting in touch</p>
+            <div className="bg-slate-200 block mt-5 p-5 w-96">
+                <div className="flex align-center justify-between gap-4 mb-2">
+                    <p className="font-bold">Phone</p>
+                    <p>07417543722</p>
+                </div>
+                <div className="flex align-center justify-between gap-4 mb-2">
+                    <p className="font-bold">Email</p>
+                    <a href="mailto: mmellows1@gmail.com">mmellows1@gmail.com</a>
+                </div>
+                <div className="border-dotted border-b-2 border-b-slate-400 border-2 my-5"></div>
+                <div className="flex align-center justify-between gap-4 mb-2">
+                    <p className="font-bold">Facebook</p>
+                    <p>@matthew.mellows</p>
+                </div>
+                <div className="flex align-center justify-between gap-4 mb-2">
+                    <p className="font-bold">Twitter</p>
+                    <p>@mellows99</p>
+                </div>
+                <div className="flex align-center justify-between gap-4">
+                    <p className="font-bold">Instagram</p>
+                    <p>@goonsbury_milkfloat</p>
+                </div>
+            </div>
+        </Section>
     )
 }
 

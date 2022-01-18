@@ -18,9 +18,9 @@ const Navbar = () => {
         },
         {
             isInMenu: true,
-            href: '/work',
+            href: '/portfolio',
             icon: faBriefcase,
-            label: 'Work'
+            label: 'Portfolio'
         },
         {
             isInMenu: true,
@@ -61,7 +61,7 @@ const Navbar = () => {
 
     return (
         <nav>
-            <div className="block md:hidden">
+            <div className="md:hidden block">
                 {routes.filter(({ isInMenu }) => isInMenu).map(a => (
                     <Link href={a.href}>
                         <div className="block bg-green-400 text-white rounded-full w-12 h-12 relative mb-4">

@@ -17,7 +17,7 @@ const BecomeAClient = ({ posts }) => {
     console.log(posts);
     return (
         <Section>
-            <Heading tag="h1" className="bg-white">Become a Client</Heading>
+            <Heading tag="h2">Become a Client</Heading>
         </Section>
     )
 }
