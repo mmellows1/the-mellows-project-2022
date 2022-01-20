@@ -44,12 +44,12 @@ const PortfolioItem = ({data}) => {
 
     return (
         <Link href={href}>
-            <div className="flex gap-4">
+            <div className="flex gap-4 cursor-pointer">
                 <div className="w-48 h-36 bg-orange-500 bg-cover bg-center" style={{backgroundImage: `url(${image})`}}></div>
-                <div className="bg-slate-100 p-5">
-                    <Heading tag="h2" className="font-bold text-2xl">{heading}</Heading>
-                    <p>{paragraph}</p>
-                    <p className="text-sm mt-2 uppercase">{tags.join(', ')}</p>
+                <div className="p-5 w-full">
+                    <Heading tag="h2" className="font-bold text-2xl text-slate-700">{heading}</Heading>
+                    <p className="text-slate-700">{paragraph}</p>
+                    <p className="text-slate-700 font-bold text-sm mt-2 uppercase">{tags.join(', ')}</p>
                 </div>
             </div>
         </Link>

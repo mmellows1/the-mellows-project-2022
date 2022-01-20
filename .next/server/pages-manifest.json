@@ -2,5 +2,7 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
+  "/": "pages/index.js",
+  "/become-a-client": "pages/become-a-client.js",
   "/portfolio": "pages/portfolio.js"
 }
