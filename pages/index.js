@@ -1,7 +1,9 @@
+// https://html5.seatheme.net/aside/dark-menushown/index.html
 import { faCss3, faGoogle, faHtml5, faJs, faNode, faReact, faWordpress } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import PortfolioEntry from '@tmp/components/portfolio-entry'
-import FadeIn from 'react-fade-in'
+import portfolioItems from '@tmp/routes/portfolio-items';
+import Link from 'next/link';
 import me from '../assets/img/me.jpg'
 import Heading from '../components/heading'
 
@@ -30,45 +32,18 @@ const getAge = (birthDate) => {
 
 export const getStaticProps = async() => {
 
-  const portfolioItems = [
-    {
-        image: 'https://images.pexels.com/photos/238118/pexels-photo-238118.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
-        heading: '88 Days',
-        paragraph: 'Lorem ipsum em so too.',
-        href: '/work/eighty-eight-days',
-        tags: ['all', 'design']
-    },
-    {
-        image: 'https://images.pexels.com/photos/238118/pexels-photo-238118.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
-        heading: 'Cakes and Bakes',
-        paragraph: 'Lorem ipsum em so too.',
-        href: '/work/cakes-and-bakes',
-        tags: ['all', 'development']
-    },
-    {
-        image: 'https://images.pexels.com/photos/238118/pexels-photo-238118.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
-        heading: 'Mimis',
-        paragraph: 'Lorem ipsum em so too.',
-        href: '/work/mimis',
-        tags: ['all', 'design']
-    },
-  ]
-
   return {
     props: {
       age: getAge(new Date('July 23, 1991')),
       developerAge: getAge(new Date('2011')),
-      professionalAge: getAge(new Date('2014')),
-      portfolioItems
+      professionalAge: getAge(new Date('2014'))
     }
   }
 }
 
 export default function Home(props) {
   
-  const {age, developerAge, professionalAge, portfolioItems} = props;
-
-  console.log(me)
+  const {age, developerAge, professionalAge} = props;
 
   return (
     <div>
@@ -78,7 +53,9 @@ export default function Home(props) {
             <Heading tag="h2">The Mellows Project</Heading>
           </div>
           <p className="mb-4">My name is Matthew Mellows, I am a Web Developer from Surrey, I have been doing web and app development for {developerAge} years with {professionalAge} years professional experience.</p>
-          <p>I have built React Applications and Wordpress websites for small, medium, large and enterprise businesses in a broad range of sectors. Please find my linked in for references at the bottom.</p>
+          <p className="mb-4">I have built React Applications and Wordpress websites for small, medium, large and enterprise businesses in a broad range of sectors. Please find my linked in for references at the bottom.</p>
+          <Link href="/cv.pdf"><button className="bg-slate-500 border-2 border-slate-500 px-4 py-1 rounded-md font-bold text-white hover:bg-white hover:text-slate-500 mr-4">123</button></Link>
+          <Link href="/"><button className="bg-slate-500 border-2 border-slate-500 px-4 py-1 rounded-md font-bold text-white hover:bg-white hover:text-slate-500">123</button></Link>
         </div>
         <div className="basis-96">
           <img src={me.src} className="w-96"/>

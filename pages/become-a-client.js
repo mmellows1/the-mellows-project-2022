@@ -2,7 +2,7 @@ import Heading from "../components/heading";
 import Section from "../components/section";
 
 // This function gets called at build time
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
     const posts = [
         { label: 1 }
     ]

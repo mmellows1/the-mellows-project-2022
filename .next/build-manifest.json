@@ -30,11 +30,6 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/become-a-client": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/become-a-client.js"
-    ],
     "/portfolio": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
@@ -49,11 +44,6 @@
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/work/eighty-eight-days.js"
-    ],
-    "/work/mimis": [
-      "static/chunks/webpack.js",
-      "static/chunks/main.js",
-      "static/chunks/pages/work/mimis.js"
     ]
   },
   "ampFirstPages": []

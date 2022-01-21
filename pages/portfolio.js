@@ -3,34 +3,11 @@ import Section from "@tmp/components/section";
 import Link from "next/link";
 import { useState } from "react";
 import FadeIn from 'react-fade-in';
+import portfolioItems from '@tmp/routes/portfolio-items';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEye } from '@fortawesome/free-solid-svg-icons'
 
 export const getStaticProps = async () => {
-
-
-    const portfolioItems = [
-        {
-            image: 'https://images.pexels.com/photos/238118/pexels-photo-238118.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
-            heading: '88 Days',
-            paragraph: 'Lorem ipsum em so too.',
-            href: '/work/eighty-eight-days',
-            tags: ['all', 'design']
-        },
-        {
-            image: 'https://images.pexels.com/photos/238118/pexels-photo-238118.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
-            heading: 'Cakes and Bakes',
-            paragraph: 'Lorem ipsum em so too.',
-            href: '/work/cakes-and-bakes',
-            tags: ['all', 'development']
-        },
-        {
-            image: 'https://images.pexels.com/photos/238118/pexels-photo-238118.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
-            heading: 'Mimis',
-            paragraph: 'Lorem ipsum em so too.',
-            href: '/work/mimis',
-            tags: ['all', 'design']
-        },
-    ]
-
     return {
         props: {
             portfolioItems
@@ -38,9 +15,25 @@ export const getStaticProps = async () => {
     }
 }
 
+const PortfolioEntry = ({data}) => {
+
+    const {image, href} = data;
+
+
+    return (
+        <Link href={href}>
+            <div className={`col-span-2 row-span-2 bg-purple-500 h-96 p-10 bg-cover relative overflow-hidden group`} style={{backgroundImage: `url(${image})`}}>
+                <span className="group-hover:opacity-50 transition-all absolute left-0 top-0 bg-black opacity-0 w-full h-full"></span>
+                <span className="transition-all group-hover:bottom-1/2 absolute -bottom-1/2 left-1/2 -translate-x-1/2 translate-y-1/2 bg-white text-slate-800 w-24 h-24 rounded-full cursor-pointer">
+                    <FontAwesomeIcon icon={faEye} size="2x" className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" />
+                </span>
+            </div>
+        </Link>
+    )
+}
+
 const PortfolioItem = ({data}) => {
     const {heading, paragraph, href, image, tags} = data;
-    console.log({heading, paragraph, href, image});
 
     return (
         <Link href={href}>
@@ -55,34 +48,22 @@ const PortfolioItem = ({data}) => {
         </Link>
 )}
 
-function Work({portfolioItems}) {
+function Work() {
     
     const [tag, setTag] = useState('all');
 
     const activeClass = (activeTag) => {
         if(activeTag === tag) {
-            return 'bg-white border-green-500'
+            return 'bg-white border-green-500 text-green-500 border-green-500'
         } else {
             return 'bg-green-500 border-green-500'
         }
     }
 
     return (
-        <Section>
-            <div>
-                <Heading tag="h1">Portfolio</Heading>
-                <p>Welcome to my portfolio page, here you can see all my work that I have worked on over the years of being a developer</p>
-            </div>
-            <div className="py-5 gap-4 flex">
-                <button onClick={() => setTag('development')} className={`px-8 py-2 bg-green-500 rounded-md font-bold text-white ${activeClass('development')}`}>Development</button>
-                <button onClick={() => setTag('design')} className={`px-8 py-2 bg-green-500 rounded-md font-bold text-white ${activeClass('design')}`}>Design</button>
-                <button onClick={() => setTag('ui')} className={`px-8 py-2 bg-green-500 rounded-md font-bold text-white ${activeClass('ui')}`}>UI</button>
-                <button onClick={() => setTag('all')} className={`px-8 py-2 bg-green-500 rounded-md font-bold text-white ${activeClass('all')}`}>All</button>
-            </div>
-            <FadeIn delay={50} className="flex flex-col gap-4">
-                {portfolioItems.filter((a) => a.tags.includes(tag)).map(a => <PortfolioItem data={a} />)}
-            </FadeIn>
-        </Section>
+        <div className="grid grid-cols-4">
+            {portfolioItems.map(a => <PortfolioEntry data={a} />)}
+        </div>
     )
 }
 
