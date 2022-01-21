@@ -1,5 +1,6 @@
 // https://html5.seatheme.net/aside/dark-menushown/index.html
 import { faCss3, faGoogle, faHtml5, faJs, faNode, faReact, faWordpress } from '@fortawesome/free-brands-svg-icons'
+import { faFire } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import PortfolioEntry from '@tmp/components/portfolio-entry'
 import portfolioItems from '@tmp/routes/portfolio-items';
@@ -85,8 +86,9 @@ export default function Home(props) {
             <p className="text-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse blandit malesuada lacus non commodo.</p>
           </div>
           <div className="p-0 md:p-4 mb-4">
-            <FontAwesomeIcon icon={faNode} color="#6cc24a" size="2x" className="mb-2" />
-            <Heading tag="h3">React JS and React Native</Heading>
+            <FontAwesomeIcon icon={faNode} color="#6cc24a" size="2x" className="mb-2 mr-2" />
+            <FontAwesomeIcon icon={faFire} color="#FFCA28" size="2x" className="mb-2" />
+            <Heading tag="h3">Node JS and Serverless APIs</Heading>
             <p className="text-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse blandit malesuada lacus non commodo.</p>
           </div>
           <div className="p-0 md:p-4 mb-4">

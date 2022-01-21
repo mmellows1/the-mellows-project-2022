@@ -4,16 +4,16 @@ import Link from "next/link";
 import pages from '@tmp/routes/pages';
 import socials from '@tmp/routes/social-items';
 
-const ListItem = ({data}) => {
-    const {href, label} = data;
+const ListItem = ({ data }) => {
+    const { href, label } = data;
     return (
         <li className="text-white">
             <Link href={href}>{label}</Link>
         </li>
-    )   
+    )
 }
 
-const SocialItem = ({data}) => {
+const SocialItem = ({ data }) => {
     const { icon, href } = data;
     return (
         <Link href={href}>
@@ -72,7 +72,7 @@ const Navbar = () => {
                         </h2>
                     </Link>
                     <ul className="flex flex-col gap-4 font-bold">
-                        {pages.map(a =><ListItem data={a}/>)}
+                        {pages.map(a => <ListItem data={a} />)}
                     </ul>
                     <div className="self-end">
                         <ul className="my-5 flex justify-start gap-4">

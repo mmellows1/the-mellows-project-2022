@@ -3,14 +3,10 @@ import { faFacebook, faInstagram, faLinkedin, faPinterest, faTwitter } from "@fo
 export default [
     {
         icon: faFacebook,
-        href: '/123123123123'
-    },
-    {
-        icon: faInstagram,
-        href: '/123123123123'
+        href: 'https://www.facebook.com/mellowsproject/'
     },
     {
         icon: faLinkedin,
-        href: '/123123123123'
+        href: 'https://www.linkedin.com/in/matthew-mellows-b3166487/'
     },
 ]
