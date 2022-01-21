@@ -1,7 +1,7 @@
 import Heading from "@tmp/components/heading";
 import Section from "@tmp/components/section";
 import Link from "next/link";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import FadeIn from 'react-fade-in';
 
 export const getStaticProps = async () => {
@@ -38,34 +38,28 @@ export const getStaticProps = async () => {
     }
 }
 
-const PortfolioItem = ({data}) => {
-    const {heading, paragraph, href, image, tags} = data;
-    console.log({heading, paragraph, href, image});
+const PortfolioItem = ({ data }) => {
+    const { heading, paragraph, href, image, tags } = data;
+    console.log({ heading, paragraph, href, image });
 
     return (
         <Link href={href}>
             <div className="flex gap-4">
-                <div className="w-48 h-36 bg-orange-500 bg-cover bg-center" style={{backgroundImage: `url(${image})`}}></div>
-                <div className="bg-slate-100 p-5">
+                <div className="w-48 h-36 bg-orange-500 bg-cover bg-center" style={{ backgroundImage: `url(${image})` }}></div>
+                <div className="bg-slate-100 p-5 w-full">
                     <Heading tag="h2" className="font-bold text-2xl">{heading}</Heading>
                     <p>{paragraph}</p>
                     <p className="text-sm mt-2 uppercase">{tags.join(', ')}</p>
                 </div>
             </div>
         </Link>
-)}
+    )
+}
 
-function Work({portfolioItems}) {
-    
+function Work({ portfolioItems }) {
+
     const [tag, setTag] = useState('all');
-
-    const activeClass = (activeTag) => {
-        if(activeTag === tag) {
-            return 'bg-white border-green-500'
-        } else {
-            return 'bg-green-500 border-green-500'
-        }
-    }
+    const tags = ['design', 'development', 'ui', 'all'];
 
     return (
         <Section>
@@ -74,10 +68,11 @@ function Work({portfolioItems}) {
                 <p>Welcome to my portfolio page, here you can see all my work that I have worked on over the years of being a developer</p>
             </div>
             <div className="py-5 gap-4 flex">
-                <button onClick={() => setTag('development')} className={`px-8 py-2 bg-green-500 rounded-md font-bold text-white ${activeClass('development')}`}>Development</button>
-                <button onClick={() => setTag('design')} className={`px-8 py-2 bg-green-500 rounded-md font-bold text-white ${activeClass('design')}`}>Design</button>
-                <button onClick={() => setTag('ui')} className={`px-8 py-2 bg-green-500 rounded-md font-bold text-white ${activeClass('ui')}`}>UI</button>
-                <button onClick={() => setTag('all')} className={`px-8 py-2 bg-green-500 rounded-md font-bold text-white ${activeClass('all')}`}>All</button>
+                {tags.map(a => a == tag ? (
+                    <button className="bg-green-500 border-4 uppercase font-bold text-sm border-green-500 px-10 py-2 text-white rounded-md">{a}</button>
+                ) : (
+                    <button className="bg-white border-4 uppercase font-bold text-sm text-green-500 border-green-500 px-10 py-2 rounded-md" onClick={() => setTag(a)}>{a}</button>
+                ))}
             </div>
             <FadeIn delay={50} className="flex flex-col gap-4">
                 {portfolioItems.filter((a) => a.tags.includes(tag)).map(a => <PortfolioItem data={a} />)}
