@@ -1,41 +1,36 @@
 import { faBriefcase, faHome, faUserCheck } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
+import pages from '@tmp/routes/pages';
+import socials from '@tmp/routes/social-items';
 
-const ListItem = ({ label, href }) => (
-    <li className="font-bold p-3 text-white">
-        <Link href={href}>{label}</Link>
-    </li>
-);
+const ListItem = ({data}) => {
+    const {href, label} = data;
+    return (
+        <li className="text-white">
+            <Link href={href}>{label}</Link>
+        </li>
+    )   
+}
+
+const SocialItem = ({data}) => {
+    const { icon, href } = data;
+    return (
+        <Link href={href}>
+            <div className="cursor-pointer w-8 h-8 bg-white rounded-full text-center relative text-green-500 hover:bg-green-200 hover:text-green-600">
+                <FontAwesomeIcon icon={icon} className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 group-hover:text-green-800" />
+            </div>
+        </Link>
+    )
+}
+
+const Copywrite = () => {
+    return (
+        <p className="text-white text-xs font-thin">&copy; Copyright of <span className="font-bold">themellowsproject.com</span></p>
+    )
+}
+
 const Navbar = () => {
-
-    const routes = [
-        {
-            isInMenu: true,
-            href: '/',
-            icon: faHome,
-            label: 'Home'
-        },
-        {
-            isInMenu: true,
-            href: '/portfolio',
-            icon: faBriefcase,
-            label: 'Portfolio'
-        },
-        {
-            isInMenu: true,
-            href: '/become-a-client',
-            icon: faUserCheck,
-            label: 'Become a client'
-        },
-        {
-            isInMenu: true,
-            href: '/contact',
-            icon: faHome,
-            label: 'Contact'
-        },
-    ];
-
 
     const age = (birthDate) => {
         var now = new Date();
@@ -44,47 +39,50 @@ const Navbar = () => {
             return year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0);
         }
 
-        // days since the birthdate    
         var days = Math.floor((now.getTime() - birthDate.getTime()) / 1000 / 60 / 60 / 24);
         var age = 0;
-        // iterate the years
         for (var y = birthDate.getFullYear(); y <= now.getFullYear(); y++) {
             var daysInYear = isLeap(y) ? 366 : 365;
             if (days >= daysInYear) {
                 days -= daysInYear;
                 age++;
-                // increment the age only if there are available enough days for the year.
             }
         }
         return age;
     }
 
+    socials.forEach(console.log)
+
     return (
-        <nav>
-            <div className="md:hidden block">
-                {routes.filter(({ isInMenu }) => isInMenu).map(a => (
-                    <Link href={a.href}>
-                        <div className="block bg-green-400 text-white rounded-full w-12 h-12 relative mb-4">
-                            <FontAwesomeIcon icon={a.icon} className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2" />
-                        </div>
+        <div className="shrink-0 grow-0 basis-auto md:basis-72 px-2 md:px-6 bg-green-500 bg-opacity-90 h-screen">
+            <nav className="h-full py-10">
+                <div className="md:hidden block">
+                    {pages.filter(({ isInMenu }) => isInMenu).map(a => (
+                        <Link href={a.href}>
+                            <div className="block bg-green-400 text-white rounded-full w-12 h-12 relative mb-4">
+                                <FontAwesomeIcon icon={a.icon} className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2" />
+                            </div>
+                        </Link>
+                    ))}
+                </div>
+                <div className="hidden md:grid h-full">
+                    <Link href="/">
+                        <h2 className="text-3xl uppercase font-bold text-white mb-4">
+                            the Mellows Project
+                        </h2>
                     </Link>
-                ))}
-            </div>
-            <div className="hidden md:block">
-                <Link href="/">
-                    <h2 className="text-2xl uppercase font-bold text-center text-white mb-4">
-                        the Mellows Project
-                    </h2>
-                </Link>
-                <p className="text-center font-bold text-sm text-white">Hi, my name is Matthew Mellows, I am {age(new Date('23 July 1991'))} years old and have been developing for {age(new Date('23 July 2013'))} years, mainly specializing in in React and Wordpress</p>
-                <hr className="border-b-2 border-opacity-20 border-white mt-4 mb-3" />
-                <ul>
-                    <div className="text-center">
-                        {routes.filter(({ isInMenu }) => isInMenu).map(a => <ListItem label={a.label} href={a.href} />)}
+                    <ul className="flex flex-col gap-4 font-bold">
+                        {pages.map(a =><ListItem data={a}/>)}
+                    </ul>
+                    <div className="self-end">
+                        <ul className="my-5 flex justify-start gap-4">
+                            {socials.map(a => <SocialItem data={a} />)}
+                        </ul>
+                        <Copywrite />
                     </div>
-                </ul>
-            </div>
-        </nav>
+                </div>
+            </nav>
+        </div>
     )
 }
 

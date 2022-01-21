@@ -2,7 +2,7 @@ import Heading from "../components/heading";
 import Section from "../components/section";
 
 // This function gets called at build time
-export const getServerSideProps = async () => {
+export const getStaticProps = async () => {
     const posts = [
         { label: 1 }
     ]
@@ -17,7 +17,7 @@ const BecomeAClient = ({ posts }) => {
     console.log(posts);
     return (
         <Section>
-            <Heading tag="h2">Become a Client</Heading>
+            <Heading tag="h1">Become a Client</Heading>
         </Section>
     )
 }
